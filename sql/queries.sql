@@ -9,7 +9,7 @@ CREATE TABLE person
 CREATE TABLE investmentAccount
 (
     investmentId int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    date0 DATE,
+    date DATE,
     email VARCHAR(50),
     investmentValue DOUBLE,
     FOREIGN KEY (email) REFERENCES person (email)
@@ -18,7 +18,7 @@ CREATE TABLE investmentAccount
 CREATE TABLE cashAccount
 (
     cashId int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    date1 DATE,
+    date DATE,
     email VARCHAR(50),
     cashValue DOUBLE,
     FOREIGN KEY (email) REFERENCES person (email)
@@ -32,7 +32,7 @@ CREATE TABLE investments
     symbol VARCHAR(50),
     purchasePrice DOUBLE,
     purchaseDate DATE,
-    date2 DATE,
+    date DATE,
     quantity INTEGER,
     closePrice DOUBLE,
     PRIMARY KEY (tradeId,investmentId),
