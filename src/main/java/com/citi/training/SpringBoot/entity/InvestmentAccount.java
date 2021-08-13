@@ -5,17 +5,25 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-@Entity @Table(name="investmentAccount")
+@Entity
+@Table(name="investmentAccount")
 public class InvestmentAccount extends Account{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "investmentAccountId")
     private int investmentAccountId;
 
-    @Column(name = "name") private String name;
-    @Column(name = "email") private String email;
-    @Column(name = "investmentValue") private Double investmentValue;
-    @Column(name = "date") private Date currentDate;
+    @Column(name = "name")
+    private String name;
+
+    @Column(name = "email")
+    private String email;
+
+    @Column(name = "investmentValue")
+    private Double investmentValue;
+
+    @Column(name = "date")
+    private Date currentDate;
 
     @JoinColumn(name = "investmentAccountId", referencedColumnName = "investmentAccountId")
     @OneToMany( cascade={CascadeType.MERGE, CascadeType.PERSIST})

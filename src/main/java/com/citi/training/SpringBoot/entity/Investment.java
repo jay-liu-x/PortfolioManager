@@ -11,13 +11,26 @@ public class Investment implements Serializable{
     @Column(name = "investmentId")
     private int investmentId;
 
-    @Column(name = "investmentAccountId") private Integer investmentAccountId;
-    @Column(name = "symbol") private String symbol;
-    @Column(name = "purchasePrice") private Double purchasePrice;
-    @Column(name = "purchaseDate") private Date purchaseDate;
-    @Column(name = "closePrice") private Double closePrice;
-    @Column(name = "quantity") private Integer quantity;
-    @Column(name = "date") private Date currentDate;
+    @Column(name = "investmentAccountId")
+    private Integer investmentAccountId;
+
+    @Column(name = "symbol")
+    private String symbol;
+
+    @Column(name = "purchasePrice")
+    private Double purchasePrice;
+
+    @Column(name = "purchaseDate")
+    private Date purchaseDate;
+
+    @Column(name = "closePrice")
+    private Double closePrice;
+
+    @Column(name = "quantity")
+    private Integer quantity;
+
+    @Column(name = "date")
+    private Date currentDate;
 
     public Investment() {};
 }
