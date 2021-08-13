@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Collection;
 
 @RestController
-@RequestMapping("/investmentAccounts")
+@RequestMapping("/investment_accounts")
 public class InvestmentAccountController {
     @Autowired
     private InvestmentAccountService investmentAccountService;
