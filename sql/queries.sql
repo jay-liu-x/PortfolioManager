@@ -27,8 +27,8 @@ CREATE TABLE cashAccount
 
 CREATE TABLE investments
 (
-    tradeId int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    investmentId int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    tradeId int NOT NULL AUTO_INCREMENT,
+    investmentId int NOT NULL AUTO_INCREMENT,
     symbol VARCHAR(50),
     purchasePrice DOUBLE,
     purchaseDate DATE,
