@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
+import java.util.Optional;
 
 @Service
 public class CashAccountServiceImpl implements CashAccountService {
@@ -16,5 +17,36 @@ public class CashAccountServiceImpl implements CashAccountService {
     @Override
     public Collection<CashAccount> getAllCashAccounts() {
         return cashAccountRepository.findAll();
+    }
+
+    @Override
+    public CashAccount getCashAccountById(int id) {
+        Optional<CashAccount> account =  cashAccountRepository.findById(id);
+        if (account.isPresent()) {
+            return account.get();
+        }
+        else return null;
+    }
+
+    @Override
+    public CashAccount addNewCashAccount(CashAccount cashAccount) {
+        return cashAccountRepository.save(cashAccount);
+    }
+
+    @Override
+    public CashAccount updateCashAccount(CashAccount cashAccount) {
+        return cashAccountRepository.save(cashAccount);
+    }
+
+
+    @Override
+    public void deleteCashAccountById(int id) {
+        CashAccount accountToBeDeleted = cashAccountRepository.findById(id).get();
+        deleteCashAccount(accountToBeDeleted);
+    }
+
+    @Override
+    public void deleteCashAccount(CashAccount cashAccount) {
+    cashAccountRepository.delete(cashAccount);
     }
 }

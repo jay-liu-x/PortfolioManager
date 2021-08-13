@@ -6,4 +6,14 @@ import java.util.Collection;
 
 public interface CashAccountService {
     Collection<CashAccount> getAllCashAccounts();
+
+    CashAccount getCashAccountById(int id);
+
+    CashAccount addNewCashAccount(CashAccount cashAccount);
+
+    CashAccount updateCashAccount(CashAccount cashAccount);
+
+    void deleteCashAccountById(int id);
+
+    void deleteCashAccount(CashAccount cashAccount);
 }
