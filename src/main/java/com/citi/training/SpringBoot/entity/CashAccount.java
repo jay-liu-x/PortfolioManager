@@ -17,4 +17,6 @@ public class CashAccount extends Account implements Serializable {
 
     //TODO saving and chequing
     private Enum accountType;
+
+    public CashAccount() {};
 }
