@@ -30,4 +30,44 @@ public class InvestmentAccount extends Account{
     private List<Investment> investments = new ArrayList<>();
 
     public InvestmentAccount() {};
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Double getInvestmentValue() {
+        return investmentValue;
+    }
+
+    public void setInvestmentValue(Double investmentValue) {
+        this.investmentValue = investmentValue;
+    }
+
+    public Date getCurrentDate() {
+        return currentDate;
+    }
+
+    public void setCurrentDate(Date currentDate) {
+        this.currentDate = currentDate;
+    }
+
+    public List<Investment> getInvestments() {
+        return investments;
+    }
+
+    public void setInvestments(List<Investment> investments) {
+        this.investments = investments;
+    }
 }
