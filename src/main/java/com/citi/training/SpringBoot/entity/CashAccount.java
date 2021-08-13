@@ -5,11 +5,11 @@ import java.io.Serializable;
 import java.util.Date;
 
 @Entity
-@Table(name="cashAccount")
+@Table(name="cash_account")
 public class CashAccount extends Account implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "cashId")
+    @Column(name = "cash_id")
     private int cashId;
 
     @Column(name = "name")
@@ -21,7 +21,7 @@ public class CashAccount extends Account implements Serializable {
     @Column(name = "date")
     private Date currentDate;
 
-    @Column(name = "cashValue")
+    @Column(name = "cash_value")
     private Double value;
 
     public CashAccount() {};

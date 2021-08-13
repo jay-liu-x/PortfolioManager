@@ -6,11 +6,11 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name="investmentAccount")
+@Table(name="investment_account")
 public class InvestmentAccount extends Account{
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "investmentAccountId")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "investment_account_id")
     private int investmentAccountId;
 
     @Column(name = "name")
@@ -19,13 +19,13 @@ public class InvestmentAccount extends Account{
     @Column(name = "email")
     private String email;
 
-    @Column(name = "investmentValue")
+    @Column(name = "investment_value")
     private Double investmentValue;
 
     @Column(name = "date")
     private Date currentDate;
 
-    @JoinColumn(name = "investmentAccountId", referencedColumnName = "investmentAccountId")
+    @JoinColumn(name = "investment_account_id", referencedColumnName = "investment_account_id")
     @OneToMany( cascade={CascadeType.MERGE, CascadeType.PERSIST})
     private List<Investment> investments = new ArrayList<>();
 

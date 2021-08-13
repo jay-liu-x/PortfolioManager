@@ -7,23 +7,23 @@ import java.util.Date;
 @Entity @Table(name="investments")
 public class Investment implements Serializable{
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "investmentId")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "investment_id")
     private int investmentId;
 
-    @Column(name = "investmentAccountId")
+    @Column(name = "investment_account_id")
     private Integer investmentAccountId;
 
     @Column(name = "symbol")
     private String symbol;
 
-    @Column(name = "purchasePrice")
+    @Column(name = "purchase_price")
     private Double purchasePrice;
 
-    @Column(name = "purchaseDate")
+    @Column(name = "purchase_date")
     private Date purchaseDate;
 
-    @Column(name = "closePrice")
+    @Column(name = "close_price")
     private Double closePrice;
 
     @Column(name = "quantity")
