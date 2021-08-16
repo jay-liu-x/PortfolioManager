@@ -89,4 +89,8 @@ public class Investment implements Serializable{
     public void setCurrentDate(Date currentDate) {
         this.currentDate = currentDate;
     }
+
+    public double calculateGains() {
+        return (this.closePrice - this.purchasePrice) * this.quantity;
+    }
 }

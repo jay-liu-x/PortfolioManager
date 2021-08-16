@@ -8,13 +8,7 @@ import java.util.List;
 
 @Repository
 public interface InvestmentRepository extends JpaRepository<Investment, Integer> {
-//    List<Investment> findByInvestmentAccountName(String investmentAccountName);
-//
-//    List<Investment> findAllGainers();
-//
-//    List<Investment> findAllLosers();
-//
-//    List<Investment> findTopFiveGainers();
-//
-//    List<Investment> findTopFiveLosers();
+    List<Investment> findBySymbol(String symbol);
+
+    List<Investment> findByInvestmentId(int id);
 }
