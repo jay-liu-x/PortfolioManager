@@ -2,6 +2,7 @@ DROP TABLE IF EXISTS person;
 DROP TABLE IF EXISTS investment_account;
 DROP TABLE IF EXISTS cash_account;
 DROP TABLE IF EXISTS investments;
+DROP TABLE IF EXISTS marketmover;
 
 CREATE TABLE person
 (
@@ -45,6 +46,15 @@ CREATE TABLE investments
     FOREIGN KEY (investment_account_id) REFERENCES investment_account(investment_account_id)
 );
 
+CREATE TABLE marketmover
+(
+    marketmover_id int NOT NULL AUTO_INCREMENT,
+    index_name VARCHAR(50),
+    date DATE,
+    change_rate DOUBLE,
+    index_value DOUBLE,
+    PRIMARY KEY(marketmover_id)
+);
 
 USE conygre;
 
@@ -107,3 +117,6 @@ insert into investments (symbol, purchase_price, purchase_date, close_price, dat
 insert into investments (symbol, purchase_price, purchase_date, close_price, date, quantity, investment_account_id) values ('CHSCO', 325.78, '2020-06-16', 415.04, '2021-08-05', 18, 1);
 insert into investments (symbol, purchase_price, purchase_date, close_price, date, quantity, investment_account_id) values ('UONE', 463.75, '2021-02-10', 415.32, '2020-10-02', 20, 1);
 insert into investments (symbol, purchase_price, purchase_date, close_price, date, quantity, investment_account_id) values ('OREX', 468.64, '2020-08-15', 486.27, '2020-09-29', 12, 1);
+
+insert into marketmover(index_name,date,change_rate,index_value) values ('NASDAQ','2021-01-01',2.1,15000.0);
+insert into marketmover(index_name,date,change_rate,index_value) values ('NASDAQ','2021-02-01',-1.1,14000.0);
