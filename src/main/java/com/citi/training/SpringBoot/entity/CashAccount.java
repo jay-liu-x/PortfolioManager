@@ -2,7 +2,7 @@ package com.citi.training.SpringBoot.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
+import java.sql.Date;
 
 @Entity
 @Table(name="cash_account")

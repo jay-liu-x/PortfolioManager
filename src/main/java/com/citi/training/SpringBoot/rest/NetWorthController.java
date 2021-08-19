@@ -42,10 +42,24 @@ public class NetWorthController {
         return netWorths.get(0).getNetworth();
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/net_worth/cash_accounts/{id}")
-    public Collection<NetWorth> getAllCashNetWorth(@PathVariable("id") int id) {
-        //TODO: net worth api for cash value
-        return (Collection<NetWorth>) cashAccountService.getCashAccountById(id);
+    @RequestMapping(method = RequestMethod.GET, value = "/cash_accounts/{id}")
+    public NetWorth getCashNetWorthByAccount(@PathVariable("id") int id) {
+        return cashAccountService.getCashAccountNetWorthById(id);
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/cash_accounts")
+    public List<NetWorth> getAllCashNetWorth() {
+        return cashAccountService.getAllCashAccountNetWorth();
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/cash_accounts/total")
+    public double getTotalCashNetWorth() {
+        double totalNetWorth = 0.0;
+        List<NetWorth> netWorths = cashAccountService.getAllCashAccountNetWorth();
+        for (NetWorth netWorth : netWorths) {
+            totalNetWorth += netWorth.getNetworth();
+        }
+        return totalNetWorth;
     }
 }
 
