@@ -2,7 +2,7 @@ package com.citi.training.SpringBoot.entity;
 
 import java.sql.Date;
 
-public class NetWorth {
+public class NetWorth implements Comparable<NetWorth>{
     private Date date;
     private Double networth;
 
@@ -25,5 +25,10 @@ public class NetWorth {
 
     public void setNetworth(Double networth) {
         this.networth = networth;
+    }
+
+    @Override
+    public int compareTo(NetWorth o) {
+        return getDate().compareTo(o.getDate());
     }
 }
