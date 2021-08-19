@@ -22,4 +22,10 @@ public interface InvestmentService {
     Collection<Investment> getInvestmentsByDateAndAccount(Date date, int id);
 
     Collection<Investment> getInvestmentsByDate(Date date);
+
+    public Double calculateIncome();
+
+    public Double calculateSpending();
+
+    public Double calculateOverall();
 }

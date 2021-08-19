@@ -5,16 +5,26 @@ import com.citi.training.SpringBoot.repo.InvestmentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+
+import java.sql.Date;
+
 
 @Service
 public class InvestmentServiceImpl implements InvestmentService {
 
     @Autowired
     private InvestmentRepository investmentRepository;
+
+    private final java.util.Date lastDayOfSale = new SimpleDateFormat("yyyy-MM-dd").parse("2021-08-18");
+    private final java.util.Date firstDayOfPurchase = new SimpleDateFormat("yyyy-MM-dd").parse("2021-08-12");
+
+    public InvestmentServiceImpl() throws ParseException {
+    }
 
     @Override
     public Collection<Investment> getAllInvestments() {
@@ -74,5 +84,40 @@ public class InvestmentServiceImpl implements InvestmentService {
     @Override
     public List<Investment> getInvestmentsByDate(Date date) {
         return investmentRepository.findByDate(date);
+    }
+
+    /* Total income for the last 7 days. */
+    @Override
+    public Double calculateIncome() {
+        List<Investment> investments = investmentRepository.findAll();
+        List<Investment> investmentsWithoutDuplicates = getInvestmentsWithoutDuplicates(investments);
+        double income = 0.00;
+        for (Investment investment : investmentsWithoutDuplicates) {
+            if (investment.getDate().before(lastDayOfSale)) {
+                income += investment.getClosePrice() * investment.getQuantity();
+            }
+        }
+
+        return income;
+    }
+
+    /* Total spending for the last 7 days. */
+    @Override
+    public Double calculateSpending() {
+        List<Investment> investments = investmentRepository.findAll();
+        List<Investment> investmentsWithoutDuplicates = getInvestmentsWithoutDuplicates(investments);
+        double spending = 0.00;
+        for (Investment investment : investmentsWithoutDuplicates) {
+            if (investment.getPurchaseDate().after(firstDayOfPurchase)) {
+                spending += investment.getPurchasePrice() * investment.getQuantity();
+            }
+        }
+
+        return spending;
+    }
+
+    @Override
+    public Double calculateOverall() {
+        return this.calculateIncome() - this.calculateSpending();
     }
 }
