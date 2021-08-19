@@ -24,6 +24,31 @@ public class NetWorthController {
     @Autowired
     private CashAccountService cashAccountService;
 
+    @GetMapping
+    public Collection<NetWorth> getAllNetWorth() {
+        Collection<NetWorth> investmentNetWorths = getAllInvestmentNetWorth();
+        Collection<NetWorth> cashNetWorths = getAllCashNetWorth();
+        Collection<NetWorth> newNetWorth = new ArrayList<>();
+        for (NetWorth netWorth : investmentNetWorths) {
+            NetWorth netWorthNew = null;
+            for (NetWorth netWorth2 : cashNetWorths) {
+                netWorthNew = new NetWorth(netWorth.getDate(), netWorth.getNetworth()+netWorth2.getNetworth());
+            }
+            newNetWorth.add(netWorthNew);
+        }
+        return newNetWorth;
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/total")
+    public double getTotalNetWorth() {
+        double networthValue = 0.0;
+        Collection<NetWorth> netWorths = getAllNetWorth();
+        for (NetWorth netWorth : netWorths) {
+            networthValue += netWorth.getNetworth();
+        }
+        return networthValue;
+    }
+
     @RequestMapping(method = RequestMethod.GET, value = "/investment_accounts")
     public Collection<NetWorth> getAllInvestmentNetWorth() {
         return investmentAccountService.getAllNetWorth();
