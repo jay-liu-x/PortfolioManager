@@ -25,36 +25,4 @@ public class InvestmentAccountController {
     public InvestmentAccount getInvestmentAccountById(@PathVariable("id") int id) {
         return investmentAccountService.getInvestmentAccountById(id);
     }
-
-    @RequestMapping(method=RequestMethod.GET, value="/404/{id}")
-    public ResponseEntity<InvestmentAccount> getByIdWith404(@PathVariable("id") int id) {
-        InvestmentAccount account = investmentAccountService.getInvestmentAccountById(id);
-        if (account == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        else {
-            return new ResponseEntity<>(account, HttpStatus.OK);
-        }
-    }
-
-
-    @RequestMapping(method = RequestMethod.DELETE, value = "/{id}")
-    public void deleteAccount(@PathVariable("id") int id) {
-        investmentAccountService.deleteInvestmentAccountById(id);
-    }
-
-    @RequestMapping(method = RequestMethod.DELETE)
-    public void deleteCd(@RequestBody InvestmentAccount investmentAccount) {
-        investmentAccountService.deleteInvestmentAccount(investmentAccount);
-    }
-
-    @RequestMapping(method = RequestMethod.POST)
-    public void addAccount(@RequestBody InvestmentAccount investmentAccount) {
-        investmentAccountService.addNewInvestmentAccount(investmentAccount);
-    }
-
-    @RequestMapping(method = RequestMethod.PUT)
-    public void updateAccount(@RequestBody InvestmentAccount investmentAccount) {
-        investmentAccountService.updateInvestmentAccount(investmentAccount);
-    }
 }

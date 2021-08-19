@@ -2,7 +2,7 @@ package com.citi.training.SpringBoot.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
+import java.sql.Date;
 
 @Entity @Table(name="investments")
 public class Investment implements Serializable{
@@ -30,7 +30,7 @@ public class Investment implements Serializable{
     private Integer quantity;
 
     @Column(name = "date")
-    private Date currentDate;
+    private Date date;
 
     public Investment() {};
 
@@ -82,12 +82,12 @@ public class Investment implements Serializable{
         this.quantity = quantity;
     }
 
-    public Date getCurrentDate() {
-        return currentDate;
+    public Date getDate() {
+        return date;
     }
 
-    public void setCurrentDate(Date currentDate) {
-        this.currentDate = currentDate;
+    public void setDate(Date date) {
+        this.date = date;
     }
 
     public double calculateGains() {

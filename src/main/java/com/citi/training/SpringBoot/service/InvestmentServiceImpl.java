@@ -5,6 +5,7 @@ import com.citi.training.SpringBoot.repo.InvestmentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -63,5 +64,15 @@ public class InvestmentServiceImpl implements InvestmentService {
             prevInvestment = investment;
         }
         return investmentsWithoutDuplicates;
+    }
+
+    @Override
+    public List<Investment> getInvestmentsByDateAndAccount(Date date, int id) {
+        return investmentRepository.findByDateAndInvestmentAccountId(date, id);
+    }
+
+    @Override
+    public List<Investment> getInvestmentsByDate(Date date) {
+        return investmentRepository.findByDate(date);
     }
 }

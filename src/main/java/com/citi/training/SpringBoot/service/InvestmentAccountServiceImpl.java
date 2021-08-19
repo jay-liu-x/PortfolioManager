@@ -1,12 +1,18 @@
 package com.citi.training.SpringBoot.service;
 
+import com.citi.training.SpringBoot.entity.Investment;
 import com.citi.training.SpringBoot.entity.InvestmentAccount;
 import com.citi.training.SpringBoot.entity.InvestmentAccount;
+import com.citi.training.SpringBoot.entity.NetWorth;
 import com.citi.training.SpringBoot.repo.InvestmentAccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.sql.Date;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -14,6 +20,8 @@ public class InvestmentAccountServiceImpl implements InvestmentAccountService {
 
     @Autowired
     private InvestmentAccountRepository investmentAccountRepository;
+    @Autowired
+    private InvestmentService investmentService;
 
     @Override
     public Collection<InvestmentAccount> getAllInvestmentAccounts() {
@@ -30,24 +38,32 @@ public class InvestmentAccountServiceImpl implements InvestmentAccountService {
     }
 
     @Override
-    public InvestmentAccount addNewInvestmentAccount(InvestmentAccount investmentAccount) {
-        return investmentAccountRepository.save(investmentAccount);
+    public Collection<NetWorth> getNetWorthById(int id) {
+        List<NetWorth> netWorths = new ArrayList<>();
+        for (int day = 12; day < 19; day++) {
+            LocalDate date = LocalDate.of(2021,8,day);
+            Collection<Investment> investments = investmentService.getInvestmentsByDateAndAccount(Date.valueOf(date), id);
+            double netWorthValue = 0.0;
+            for (Investment investment : investments) {
+                netWorthValue += investment.calculateGains();
+            }
+            netWorths.add(new NetWorth(Date.valueOf(date), netWorthValue));
+        }
+        return netWorths;
     }
 
     @Override
-    public InvestmentAccount updateInvestmentAccount(InvestmentAccount investmentAccount) {
-        return investmentAccountRepository.save(investmentAccount);
-    }
-
-
-    @Override
-    public void deleteInvestmentAccountById(int id) {
-        InvestmentAccount accountToBeDeleted = investmentAccountRepository.findById(id).get();
-        deleteInvestmentAccount(accountToBeDeleted);
-    }
-
-    @Override
-    public void deleteInvestmentAccount(InvestmentAccount investmentAccount) {
-        investmentAccountRepository.delete(investmentAccount);
+    public Collection<NetWorth> getAllNetWorth() {
+        List<NetWorth> netWorths = new ArrayList<>();
+        for (int day = 12; day < 19; day++) {
+            LocalDate date = LocalDate.of(2021,8,day);
+            Collection<Investment> investments = investmentService.getInvestmentsByDate(Date.valueOf(date));
+            double netWorthValue = 0.0;
+            for (Investment investment : investments) {
+                netWorthValue += investment.calculateGains();
+            }
+            netWorths.add(new NetWorth(Date.valueOf(date), netWorthValue));
+        }
+        return netWorths;
     }
 }

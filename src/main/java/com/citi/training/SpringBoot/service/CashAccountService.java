@@ -9,11 +9,5 @@ public interface CashAccountService {
 
     CashAccount getCashAccountById(int id);
 
-    CashAccount addNewCashAccount(CashAccount cashAccount);
 
-    CashAccount updateCashAccount(CashAccount cashAccount);
-
-    void deleteCashAccountById(int id);
-
-    void deleteCashAccount(CashAccount cashAccount);
 }

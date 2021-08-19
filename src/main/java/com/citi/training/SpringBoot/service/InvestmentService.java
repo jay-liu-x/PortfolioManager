@@ -2,6 +2,7 @@ package com.citi.training.SpringBoot.service;
 
 import com.citi.training.SpringBoot.entity.Investment;
 
+import java.sql.Date;
 import java.util.Collection;
 import java.util.List;
 
@@ -17,4 +18,8 @@ public interface InvestmentService {
     List<Investment> getTopFiveGainers();
 
     List<Investment> getTopFiveLosers();
+
+    Collection<Investment> getInvestmentsByDateAndAccount(Date date, int id);
+
+    Collection<Investment> getInvestmentsByDate(Date date);
 }
