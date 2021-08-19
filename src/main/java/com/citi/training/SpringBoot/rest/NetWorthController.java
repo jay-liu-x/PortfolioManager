@@ -35,7 +35,7 @@ public class NetWorthController {
     @RequestMapping(method = RequestMethod.GET, value = "/net_worth/cash_accounts/{id}")
     public Collection<NetWorth> getAllCashNetWorth(@PathVariable("id") int id) {
         //TODO: net worth api for cash value
-        return new ArrayList<>();
+        return (Collection<NetWorth>) cashAccountService.getCashAccountById(id);
     }
 }
 
