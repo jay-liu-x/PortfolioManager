@@ -1,7 +1,7 @@
-DROP TABLE IF EXISTS person;
+DROP TABLE IF EXISTS investments;
 DROP TABLE IF EXISTS investment_account;
 DROP TABLE IF EXISTS cash_account;
-DROP TABLE IF EXISTS investments;
+DROP TABLE IF EXISTS person;
 DROP TABLE IF EXISTS marketmover;
 
 CREATE TABLE person
