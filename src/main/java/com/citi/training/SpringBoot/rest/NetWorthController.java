@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 
 @RestController
 @RequestMapping("/net_worth")
@@ -30,6 +32,14 @@ public class NetWorthController {
     @RequestMapping(method = RequestMethod.GET, value = "/investment_accounts/{id}")
     public Collection<NetWorth> getInvestmentNetWorthByAccount(@PathVariable("id") int id) {
         return investmentAccountService.getNetWorthById(id);
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/investment_accounts/total")
+    public double getTotalInvestmentNetWorth() {
+        List<NetWorth> netWorths = investmentAccountService.getAllNetWorth();
+        Collections.sort(netWorths);
+        Collections.reverse(netWorths);
+        return netWorths.get(0).getNetworth();
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/net_worth/cash_accounts/{id}")

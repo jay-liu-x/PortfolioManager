@@ -38,29 +38,30 @@ public class InvestmentAccountServiceImpl implements InvestmentAccountService {
     }
 
     @Override
-    public Collection<NetWorth> getNetWorthById(int id) {
+    public List<NetWorth> getNetWorthById(int id) {
         List<NetWorth> netWorths = new ArrayList<>();
         for (int day = 12; day < 19; day++) {
             LocalDate date = LocalDate.of(2021,8,day);
             Collection<Investment> investments = investmentService.getInvestmentsByDateAndAccount(Date.valueOf(date), id);
             double netWorthValue = 0.0;
             for (Investment investment : investments) {
-                netWorthValue += investment.calculateGains();
+                netWorthValue += investment.getClosePrice();
             }
             netWorths.add(new NetWorth(Date.valueOf(date), netWorthValue));
         }
         return netWorths;
     }
 
+
     @Override
-    public Collection<NetWorth> getAllNetWorth() {
+    public List<NetWorth> getAllNetWorth() {
         List<NetWorth> netWorths = new ArrayList<>();
         for (int day = 12; day < 19; day++) {
             LocalDate date = LocalDate.of(2021,8,day);
             Collection<Investment> investments = investmentService.getInvestmentsByDate(Date.valueOf(date));
             double netWorthValue = 0.0;
             for (Investment investment : investments) {
-                netWorthValue += investment.calculateGains();
+                netWorthValue += investment.getClosePrice();
             }
             netWorths.add(new NetWorth(Date.valueOf(date), netWorthValue));
         }
