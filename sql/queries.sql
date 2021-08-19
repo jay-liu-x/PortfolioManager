@@ -63,8 +63,8 @@ insert into person (name, email) values ('John Doe', 'j.d@citi.com');
 insert into investment_account (name, date, email, investment_value) values ('RRSP', '2021-01-01', 'j.d@citi.com', null);
 insert into investment_account (name, date, email, investment_value) values ('TFSA', '2021-02-01', 'j.d@citi.com', null);
 
-insert into cash_account (name, date, email, cash_value) values ('Chequing','2021-01-01', 'j.d@citi.com', null);
-insert into cash_account (name, date, email, cash_value) values ('Savings','2021-02-01', 'j.d@citi.com', null);
+insert into cash_account (name, date, email, cash_value) values ('Chequing','2021-01-01', 'j.d@citi.com', 100000);
+insert into cash_account (name, date, email, cash_value) values ('Savings','2021-02-01', 'j.d@citi.com', 99999);
 
 
 insert into investments (symbol, purchase_price, purchase_date, close_price, date, quantity, investment_account_id) values ('AB', 56.00, '2021-08-12', 53.00, '2021-08-12', 15, 2);
