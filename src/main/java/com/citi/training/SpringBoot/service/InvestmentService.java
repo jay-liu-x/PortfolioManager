@@ -15,6 +15,10 @@ public interface InvestmentService {
 
     void deleteInvestmentById(int id);
 
+    List<Investment> getAllGainers();
+
+    List<Investment> getAllLosers();
+
     List<Investment> getTopFiveGainers();
 
     List<Investment> getTopFiveLosers();

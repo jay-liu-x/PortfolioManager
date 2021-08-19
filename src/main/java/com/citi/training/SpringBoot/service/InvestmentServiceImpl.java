@@ -48,6 +48,32 @@ public class InvestmentServiceImpl implements InvestmentService {
     }
 
     @Override
+    public List<Investment> getAllGainers() {
+        List<Investment> investments = investmentRepository.findAll();
+        List<Investment> investmentsWithoutDuplicates = getInvestmentsWithoutDuplicates(investments);
+        List<Investment> gainers = new ArrayList<>();
+        for (Investment investment : investmentsWithoutDuplicates) {
+            if (investment.calculateGains() > 0) {
+                gainers.add(investment);
+            }
+        }
+        return gainers;
+    }
+
+    @Override
+    public List<Investment> getAllLosers() {
+        List<Investment> investments = investmentRepository.findAll();
+        List<Investment> investmentsWithoutDuplicates = getInvestmentsWithoutDuplicates(investments);
+        List<Investment> losers = new ArrayList<>();
+        for (Investment investment : investmentsWithoutDuplicates) {
+            if (investment.calculateGains() < 0) {
+                losers.add(investment);
+            }
+        }
+        return losers;
+    }
+
+    @Override
     public List<Investment> getTopFiveGainers() {
         List<Investment> investments = investmentRepository.findAll();
         List<Investment> investmentsWithoutDuplicates = getInvestmentsWithoutDuplicates(investments);

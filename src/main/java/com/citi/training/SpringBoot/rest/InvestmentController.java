@@ -28,9 +28,19 @@ public class InvestmentController {
         return investmentService.getInvestmentsBySymbol(symbol);
     }
 
-    @DeleteMapping( "/{id}")
+    @DeleteMapping("/{id}")
     public void deleteInvestmentById(@PathVariable("id") int id) {
         investmentService.deleteInvestmentById(id);
+    }
+
+    @GetMapping("/gainers")
+    public Collection<Investment> getAllGainers() {
+        return investmentService.getAllGainers();
+    }
+
+    @GetMapping("/losers")
+    public Collection<Investment> getAllLosers() {
+        return investmentService.getAllLosers();
     }
 
     @GetMapping("/top_five_gainers")
