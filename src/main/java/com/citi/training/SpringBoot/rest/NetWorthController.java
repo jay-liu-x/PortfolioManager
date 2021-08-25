@@ -30,11 +30,10 @@ public class NetWorthController {
         Collection<NetWorth> cashNetWorths = getAllCashNetWorth();
         Collection<NetWorth> newNetWorth = new ArrayList<>();
         for (NetWorth netWorth : investmentNetWorths) {
-            NetWorth netWorthNew = null;
             for (NetWorth netWorth2 : cashNetWorths) {
-                netWorthNew = new NetWorth(netWorth.getDate(), netWorth.getNetworth()+netWorth2.getNetworth());
+                netWorth = new NetWorth(netWorth.getDate(), netWorth.getNetworth()+netWorth2.getNetworth());
             }
-            newNetWorth.add(netWorthNew);
+            newNetWorth.add(netWorth);
         }
         return newNetWorth;
     }
