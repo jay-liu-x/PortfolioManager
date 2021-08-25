@@ -3,6 +3,7 @@ package com.citi.training.SpringBoot.service;
 import com.citi.training.SpringBoot.entity.Investment;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -32,4 +33,8 @@ public interface InvestmentService {
     public Double calculateSpending();
 
     public Double calculateOverall();
+
+    public ArrayList<Double> calculateIncomes();
+
+    public ArrayList<Double> calculateSpendings();
 }

@@ -36,5 +36,17 @@ public class CashFlowController {
     public Double getOverall() {
         return investmentService.calculateOverall();
     }
+
+    /* History of incomes for the last 7 days. */
+    @GetMapping("/incomes")
+    public ArrayList<Double> getIncomes() {
+        return investmentService.calculateIncomes();
+    }
+
+    /* History of spendings for the last 7 days. */
+    @GetMapping("/spendings")
+    public ArrayList<Double> getSpendings() {
+        return investmentService.calculateSpendings();
+    }
 }
 

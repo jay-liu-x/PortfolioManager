@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collection;
 import java.util.List;
 
@@ -145,5 +146,53 @@ public class InvestmentServiceImpl implements InvestmentService {
     @Override
     public Double calculateOverall() {
         return this.calculateIncome() - this.calculateSpending();
+    }
+
+    public static java.util.Date addDays(java.util.Date date, int days)
+    {
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        cal.add(Calendar.DATE, days); //minus number would decrement the days
+        return cal.getTime();
+    }
+
+    /* History of incomes for the last 7 days. */
+    @Override
+    public ArrayList<Double> calculateIncomes() {
+        List<Investment> investments = investmentRepository.findAll();
+        List<Investment> investmentsWithoutDuplicates = getInvestmentsWithoutDuplicates(investments);
+        ArrayList<Double> incomes = new ArrayList<>();
+        double curIncome = 0.00;
+        for (java.util.Date curDate = firstDayOfPurchase; curDate.before(addDays(lastDayOfSale, 1)); curDate = addDays(curDate, 1)) {
+            for (Investment investment : investmentsWithoutDuplicates) {
+                if (investment.getDate().equals((curDate))) {
+                    curIncome += investment.getClosePrice() * investment.getQuantity();
+                }
+            }
+            incomes.add(curIncome);
+            curIncome = 0;
+        }
+
+        return incomes;
+    }
+
+    /* History of spendings for the last 7 days. */
+    @Override
+    public ArrayList<Double> calculateSpendings() {
+        List<Investment> investments = investmentRepository.findAll();
+        List<Investment> investmentsWithoutDuplicates = getInvestmentsWithoutDuplicates(investments);
+        ArrayList<Double> spendings = new ArrayList<>();
+        double curSpending = 0.00;
+        for (java.util.Date curDate = firstDayOfPurchase; curDate.before(addDays(lastDayOfSale, 1)); curDate = addDays(curDate, 1)) {
+            for (Investment investment : investmentsWithoutDuplicates) {
+                if (investment.getPurchaseDate().equals((curDate))) {
+                    curSpending += investment.getPurchasePrice() * investment.getQuantity();
+                }
+            }
+            spendings.add(curSpending);
+            curSpending = 0;
+        }
+
+        return spendings;
     }
 }
