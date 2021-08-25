@@ -61,7 +61,7 @@ public class InvestmentAccountServiceImpl implements InvestmentAccountService {
             Collection<Investment> investments = investmentService.getInvestmentsByDate(Date.valueOf(date));
             double netWorthValue = 0.0;
             for (Investment investment : investments) {
-                netWorthValue += investment.getClosePrice();
+                netWorthValue += investment.getClosePrice()*investment.getQuantity();
             }
             netWorths.add(new NetWorth(Date.valueOf(date), netWorthValue));
         }
